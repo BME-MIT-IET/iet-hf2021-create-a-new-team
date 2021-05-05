@@ -22,7 +22,7 @@ namespace RDFSharp.UnitTests
             var result = rdf.ToString();
 
             //Assert
-            StringAssert.Equals(validURIString, result);
+            Assert.AreEqual(validURIString, result);
         }
 
         [TestMethod]
