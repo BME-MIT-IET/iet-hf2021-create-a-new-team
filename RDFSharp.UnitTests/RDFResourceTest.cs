@@ -8,9 +8,9 @@ namespace RDFSharp.UnitTests
     [TestClass]
     public class RDFResourceTest
     {
-        private string validURIString = "https://en.wikipedia.org/wiki/Joseph_Haydn";
-        private string invalidURIString = "invalid.uri.string";
-        private Regex blankNodeStringRegex = new Regex("bnode:.*");
+        private string validURIString = TestRDFObjectProvider.validURIStrings[0];
+        private string invalidURIString = TestRDFObjectProvider.invalidURIString;
+        private Regex blankNodeStringRegex = TestRDFObjectProvider.blankNodeRegex;
 
         [TestMethod]
         public void RDFResource_ValidURI_ReturnsSameWithToString()

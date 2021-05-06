@@ -9,10 +9,10 @@ namespace RDFSharp.UnitTests
     [TestClass]
     public class RDFTripleTest
     {
-        private RDFResource subjectResource = new RDFResource("https://en.wikipedia.org/wiki/Elizabeth_II");
-        private RDFResource predicateResource = new RDFResource("http://xmlns.com/foaf/0.1/age");
+        private RDFResource subjectResource = TestRDFObjectProvider.subjectResources[0];
+        private RDFResource predicateResource = TestRDFObjectProvider.predicateResources[0];
         private RDFResource blankPredicateResource = new RDFResource();
-        private RDFTypedLiteral objectLiteral = new RDFTypedLiteral("95", RDFModelEnums.RDFDatatypes.XSD_INTEGER);
+        private RDFLiteral objectLiteral = TestRDFObjectProvider.objectLiterals[0];
 
         public string getDesiredOutputStatment(RDFResource subject, RDFResource predicate, RDFLiteral obj)
         {
