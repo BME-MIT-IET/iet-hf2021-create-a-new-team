@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: main 2-build-ci
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
