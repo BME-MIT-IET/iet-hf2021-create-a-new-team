@@ -4,11 +4,17 @@ on:
   push:
     branches: 
         - main
+        - 1-non-functional-characteristics
         - 2-build-ci
+        - 3-unit-tests
+        - 4-manual-tests
   pull_request:
     branches: 
         - main
+        - 1-non-functional-characteristics
         - 2-build-ci
+        - 3-unit-tests
+        - 4-manual-tests
 
 jobs:
   build:
