@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
+// A tesztekhez szükséges kiindulási objektumokat szolgáltató osztály
 namespace RDFSharp.UnitTests
 {
     public static class TestRDFObjectProvider
