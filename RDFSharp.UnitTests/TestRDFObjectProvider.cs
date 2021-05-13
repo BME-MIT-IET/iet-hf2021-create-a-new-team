@@ -12,8 +12,8 @@ namespace RDFSharp.UnitTests
         public static Regex blankNodeRegex = new Regex("bnode:.*");
         public static string invalidURIString = "invalid.uri.string";
         public static List<string> validURIStrings = new List<string>(){
-            "https://en.wikipedia.org/wiki/Joseph_Haydn",
             "https://en.wikipedia.org/wiki/Elizabeth_II",
+            "https://en.wikipedia.org/wiki/Joseph_Haydn",
             "https://en.wikipedia.org/wiki/Magnus_Carlsen"
         };
         public static List<RDFResource> subjectResources = new List<RDFResource>()
