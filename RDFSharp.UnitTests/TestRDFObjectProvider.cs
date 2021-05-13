@@ -40,5 +40,6 @@ namespace RDFSharp.UnitTests
             new RDFTriple(subjectResources[1], predicateResources[1], objectLiterals[1]),
             new RDFTriple(subjectResources[2], predicateResources[2], objectLiterals[2])
         };
+        public static RDFGraph graph = new RDFGraph(triples);
     }
 }
