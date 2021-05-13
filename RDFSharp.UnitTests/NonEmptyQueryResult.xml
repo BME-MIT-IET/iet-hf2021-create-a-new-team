@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+  <head>
+    <variable name="?X" />
+    <variable name="?Y" />
+  </head>
+  <results>
+    <result>
+      <binding name="?X">
+        <uri>https://en.wikipedia.org/wiki/Elizabeth_II</uri>
+      </binding>
+      <binding name="?Y">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#integer">95</literal>
+      </binding>
+    </result>
+  </results>
+</sparql>
