@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RDFSharp", "RDFSharp\RDFSha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RDFSharp.UnitTests", "RDFSharp.UnitTests\RDFSharp.UnitTests.csproj", "{47DD1EC0-91A6-4BBC-B1EF-9DDE6E4AE8D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonFunctionalTests", "NonFunctionalTests\NonFunctionalTests.csproj", "{A374DF0F-5030-4AB4-923E-F8D15C18C30C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1EEA1A7E-A661-4745-810E-FBEB9F20B6FC} = {1EEA1A7E-A661-4745-810E-FBEB9F20B6FC}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +26,10 @@ Global
 		{47DD1EC0-91A6-4BBC-B1EF-9DDE6E4AE8D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47DD1EC0-91A6-4BBC-B1EF-9DDE6E4AE8D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47DD1EC0-91A6-4BBC-B1EF-9DDE6E4AE8D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A374DF0F-5030-4AB4-923E-F8D15C18C30C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A374DF0F-5030-4AB4-923E-F8D15C18C30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A374DF0F-5030-4AB4-923E-F8D15C18C30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A374DF0F-5030-4AB4-923E-F8D15C18C30C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
