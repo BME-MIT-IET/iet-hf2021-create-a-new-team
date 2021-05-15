@@ -142,9 +142,6 @@ namespace RDFSharp.UnitTests
 
         private string getXML(string path)
         {
-            //var projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            //var fullPath = Path.Combine(projectPath, path);
-
             var lines = System.IO.File.ReadAllLines(path);
             var xmlString = string.Concat(lines);
 
