@@ -13,7 +13,9 @@ A SPARQL lekérdezésekkel foglalkozó komponenshez happy-path teszteket készí
 **stb...**
 
 Tesztekkel elért kódlefedettség:
+
 ![Tesztek kódlefedettsége](test-coverage.png)
+
 (használt eszköz: Visual Studio Enterprise beépített kódlefedettség analizátora)
 
 ### Tanulságok:
