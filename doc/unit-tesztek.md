@@ -14,7 +14,7 @@ Az OWL szemantika tesztelésénél az ontológia osztályait teszteltük, azon b
 
 Tesztekkel elért kódlefedettség:
 
-![Tesztek kódlefedettsége](test-coverage.png)
+![Tesztek kódlefedettsége](./images/test-coverage.png "Kódlefedettség")
 
 (használt eszköz: Visual Studio Enterprise beépített kódlefedettség analizátora)
 
