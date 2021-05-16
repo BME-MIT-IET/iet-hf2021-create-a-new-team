@@ -15,72 +15,72 @@ namespace RDFSharp.UnitTests
         [TestMethod]
         public void UnionWith_hasSameNumberOfClassesAndProperties() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
+            var model = new RDFOntologyModel();
             var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
-            ont.Model.ClassModel.AddClass(siberian);          
+            model.ClassModel.AddClass(siberian);          
             var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));         
-            ont.Model.PropertyModel.AddProperty(hasName);
+            model.PropertyModel.AddProperty(hasName);
 
-            var new_ont = new RDFOntology(new RDFResource("http://new_ont/"));
+            var new_model = new RDFOntologyModel();
             var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
-            new_ont.Model.ClassModel.AddClass(persian);
+            new_model.ClassModel.AddClass(persian);
             var hasNote = new RDFOntologyAnnotationProperty(new RDFResource("http://ont/props/hasNote"));
-            new_ont.Model.PropertyModel.AddProperty(hasNote);
+            new_model.PropertyModel.AddProperty(hasNote);
 
             //Act
-            var union_ont = ont.UnionWith(new_ont);
+            var union_model = model.UnionWith(new_model);
 
             //Assert
-            Assert.AreEqual(2, union_ont.Model.ClassModel.ClassesCount);
-            Assert.AreEqual(1, union_ont.Model.PropertyModel.AnnotationPropertiesCount);
-            Assert.AreEqual(1, union_ont.Model.PropertyModel.DatatypePropertiesCount);
+            Assert.AreEqual(2, union_model.ClassModel.ClassesCount);
+            Assert.AreEqual(1, union_model.PropertyModel.AnnotationPropertiesCount);
+            Assert.AreEqual(1, union_model.PropertyModel.DatatypePropertiesCount);
         }
 
         [TestMethod]
         public void IntersectWith_hasSameNumberOfClasses()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
+            var model = new RDFOntologyModel();
             var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
-            ont.Model.ClassModel.AddClass(siberian);
+            model.ClassModel.AddClass(siberian);
             var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
-            ont.Model.PropertyModel.AddProperty(hasName);
+            model.PropertyModel.AddProperty(hasName);
             var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
-            ont.Model.ClassModel.AddClass(persian);
+            model.ClassModel.AddClass(persian);
 
-            var new_ont = new RDFOntology(new RDFResource("http://new_ont/"));
-            new_ont.Model.ClassModel.AddClass(siberian);
-            new_ont.Model.ClassModel.AddClass(persian);
+            var new_model = new RDFOntologyModel();
+            new_model.ClassModel.AddClass(siberian);
+            new_model.ClassModel.AddClass(persian);
 
             //Act
-            var common_ont = ont.IntersectWith(new_ont);
+            var common_model = model.IntersectWith(new_model);
 
             //Assert
-            Assert.AreEqual(2, common_ont.Model.ClassModel.ClassesCount);
-            Assert.AreEqual(0, common_ont.Model.PropertyModel.DatatypePropertiesCount);
+            Assert.AreEqual(2, common_model.ClassModel.ClassesCount);
+            Assert.AreEqual(0, common_model.PropertyModel.DatatypePropertiesCount);
         }
 
         [TestMethod]
         public void DifferenceWith_hasSameNumberOfClasses()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
+            var ont = new RDFOntologyModel();
             var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
-            ont.Model.ClassModel.AddClass(siberian);
+            ont.ClassModel.AddClass(siberian);
             var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
-            ont.Model.PropertyModel.AddProperty(hasName);
+            ont.PropertyModel.AddProperty(hasName);
             var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
-            ont.Model.ClassModel.AddClass(persian);
+            ont.ClassModel.AddClass(persian);
 
-            var new_ont = new RDFOntology(new RDFResource("http://new_ont/"));
-            new_ont.Model.ClassModel.AddClass(persian);
+            var new_model = new RDFOntologyModel();
+            new_model.ClassModel.AddClass(persian);
 
             //Act
-            var difference_ont = ont.DifferenceWith(new_ont);
+            var difference_model = ont.DifferenceWith(new_model);
 
             //Assert
-            Assert.AreEqual(1, difference_ont.Model.ClassModel.ClassesCount);
-            Assert.AreEqual(1, difference_ont.Model.PropertyModel.DatatypePropertiesCount);
+            Assert.AreEqual(1, difference_model.ClassModel.ClassesCount);
+            Assert.AreEqual(1, difference_model.PropertyModel.DatatypePropertiesCount);
         }
     }
 }
