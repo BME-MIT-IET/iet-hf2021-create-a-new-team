@@ -13,12 +13,6 @@ namespace RDFSharp.UnitTests
     public class RDFOntologyDataTest
     {
 
-        //[TestInitialize]
-        public void setup() {
-            //TODO
-        }
-
-
         [TestMethod]
         public void Add_ExistingFact_Failure() {
             //Arrange
@@ -211,6 +205,54 @@ namespace RDFSharp.UnitTests
 
             //Assert
             Assert.IsFalse(ont.Data.CheckIsAssertion(ontologyFact, hasName, ontologyLiteral));
+        }
+
+        [TestMethod]
+        public void SelectLiteral_Success() {
+            //Arrange
+            var ont = new RDFOntology(new RDFResource("http://ont/"));
+            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
+            var ontologyLiteral2 = new RDFOntologyLiteral(new RDFPlainLiteral("John"));
+            ont.Data.AddLiteral(ontologyLiteral);
+            ont.Data.AddLiteral(ontologyLiteral2);
+
+            //Act
+            var selectedLiteral = ont.Data.SelectLiteral("Garfield");
+
+            //Assert
+            Assert.AreEqual(selectedLiteral, ontologyLiteral);
+        }
+
+        [TestMethod]
+        public void SelectNotExistingLiteral_Failure() {
+            //Arrange
+            var ont = new RDFOntology(new RDFResource("http://ont/"));
+            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
+            var ontologyLiteral2 = new RDFOntologyLiteral(new RDFPlainLiteral("John"));
+            ont.Data.AddLiteral(ontologyLiteral);
+            ont.Data.AddLiteral(ontologyLiteral2);
+
+            //Act
+            var selectedLiteral = ont.Data.SelectLiteral("Odie");
+
+            //Assert
+            Assert.IsNull(selectedLiteral);
+        }
+
+        [TestMethod]
+        public void SelectFact_Success() {
+            //Arrange
+            var ont = new RDFOntology(new RDFResource("http://ont/"));
+            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
+            var ontologyFact2 = new RDFOntologyFact(new RDFResource("http://ont/facts/odie"));
+            ont.Data.AddFact(ontologyFact)
+                    .AddFact(ontologyFact2);
+
+            //Act
+            var selectedFact = ont.Data.SelectFact("http://ont/facts/garfield");
+
+            //Assert
+            Assert.AreEqual(selectedFact, ontologyFact);
         }
 
     }
