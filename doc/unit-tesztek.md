@@ -10,7 +10,7 @@ Egy RDF-kezelő API-nak jellegéből adódóan kritikus része a modellekkel fog
 
 A SPARQL lekérdezésekkel foglalkozó komponenshez happy-path teszteket készítettünk, vizsgálva a query-konstruálás folyamatát, illetve a lekérdezés eredményének szabványos mivoltát.
 
-**stb...**
+Az OWL szemantika tesztelésénél az ontológia osztályait teszteltük, azon belül is főleg azokat, amelyek a leggyakrabban használtak új ontológia létrehozásakor. Ez maga az RDFOntology osztály, ennek két fontos property-je, az OntologyModel és az OntologyData, továbbá a Fact és Literál osztályok, amik szükségesek, hogy fel tudjuk tölteni az ontológiánkat.
 
 Tesztekkel elért kódlefedettség:
 
