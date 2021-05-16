@@ -12,7 +12,7 @@ Ezután elkészítettem a szükséges workflow-t. Ez minden fontosabb branchen (
 
 ## A worlkflow javítása
 
-Balázs visszajelzésére, miszerint a Testek futtatása meghiúsul meg kellett javítanom a workflow-t. Itt a hiba az volt, hogy a workflow és a projekt nem azonos dotnet verziókban futott. Ezért ezt kijavítottam a workflow-ban, ami végül megoldotta  aproblémát.
+Balázs (BACHlazs) visszajelzésére (https://github.com/BME-MIT-IET/iet-hf2021-create-a-new-team/pull/6#issuecomment-839659777), miszerint a Testek futtatása meghiúsul meg kellett javítanom a workflow-t. Itt a hiba az volt, hogy a workflow és a projekt nem azonos dotnet verziókban futott. Ezért ezt kijavítottam a workflow-ban, ami végül megoldotta a problémát.
 
 ## Tanulságok
 
