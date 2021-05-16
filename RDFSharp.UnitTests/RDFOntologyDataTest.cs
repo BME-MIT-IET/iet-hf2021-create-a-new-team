@@ -13,11 +13,27 @@ namespace RDFSharp.UnitTests
     public class RDFOntologyDataTest
     {
 
+        RDFOntology ont = null;
+        RDFOntologyFact ontologyFact = null;
+        RDFOntologyLiteral ontologyLiteral = null;
+        RDFOntologyFact ontologyFact2 = null;
+        RDFOntologyLiteral ontologyLiteral2 = null;
+
+        [TestInitialize]
+        public void init()
+        {
+            ont = new RDFOntology(new RDFResource("http://ont/"));
+            ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
+            ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
+            ontologyFact2 = new RDFOntologyFact(new RDFResource("http://ont/facts/john"));
+            ontologyLiteral2 = new RDFOntologyLiteral(new RDFPlainLiteral("John"));
+        }
+
+
         [TestMethod]
         public void Add_ExistingFact_Failure() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
+
             
             //Act
             ont.Data.AddFact(ontologyFact)
@@ -32,8 +48,6 @@ namespace RDFSharp.UnitTests
         public void Add_ExistingLiteral_Failure()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
 
 
             //Act
@@ -48,44 +62,36 @@ namespace RDFSharp.UnitTests
         [TestMethod]
         public void Add_SameAs_Relation_Success() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var originalOntologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
             var differentOntologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/orangeFunnyCat"));
 
-            ont.Data.AddFact(originalOntologyFact)
+            ont.Data.AddFact(ontologyFact)
                     .AddFact(differentOntologyFact);
 
             //Act
-            ont.Data.AddSameAsRelation(differentOntologyFact, originalOntologyFact);
+            ont.Data.AddSameAsRelation(differentOntologyFact, ontologyFact);
 
             //Assert
-            Assert.IsTrue(ont.Data.CheckIsSameFactAs(originalOntologyFact, differentOntologyFact));
+            Assert.IsTrue(ont.Data.CheckIsSameFactAs(ontologyFact, differentOntologyFact));
 
         }
 
         [TestMethod]
         public void Add_DifferentFrom_Relation_Success() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var originalOntologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
-            var newOntologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/john"));
 
-            ont.Data.AddFact(originalOntologyFact)
-                    .AddFact(newOntologyFact);
+            ont.Data.AddFact(ontologyFact)
+                    .AddFact(ontologyFact2);
 
             //Act
-            ont.Data.AddDifferentFromRelation(originalOntologyFact, newOntologyFact);
+            ont.Data.AddDifferentFromRelation(ontologyFact, ontologyFact2);
 
             //Assert
-            Assert.IsTrue(ont.Data.CheckIsDifferentFactFrom(originalOntologyFact, newOntologyFact));
+            Assert.IsTrue(ont.Data.CheckIsDifferentFactFrom(ontologyFact, ontologyFact2));
         }
 
         [TestMethod]
         public void Add_Assertion_Success() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
-            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
             var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
             ont.Data.AddFact(ontologyFact);
             ont.Model.PropertyModel.AddProperty(hasName);
@@ -100,9 +106,6 @@ namespace RDFSharp.UnitTests
         [TestMethod]
         public void RemoveFact_Success() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
-            var ontologyFact2 = new RDFOntologyFact(new RDFResource("http://ont/facts/john"));
             ont.Data.AddFact(ontologyFact)
                     .AddFact(ontologyFact2);
 
@@ -117,18 +120,15 @@ namespace RDFSharp.UnitTests
         [TestMethod]
         public void RenameFact_Success() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
-            var ontologyFact2 = new RDFOntologyFact(new RDFResource("http://ont/facts/odie"));
             ont.Data.AddFact(ontologyFact)
                     .AddFact(ontologyFact2);
-            var newOntologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/john"));
+            var newOntologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/odie"));
 
             //Act
-            ont.Data.RenameFact(ontologyFact, newOntologyFact);
+            ont.Data.RenameFact(ontologyFact2, newOntologyFact);
 
             //Assert
-            var renamedFact = ont.Data.SelectFact("http://ont/facts/john");
+            var renamedFact = ont.Data.SelectFact("http://ont/facts/odie");
             Assert.AreEqual(renamedFact, newOntologyFact);
         }
 
@@ -136,9 +136,6 @@ namespace RDFSharp.UnitTests
         public void Remove_Literal_Success()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
-            var ontologyLiteral2 = new RDFOntologyLiteral(new RDFPlainLiteral("John"));
             ont.Data.AddLiteral(ontologyLiteral)
                     .AddLiteral(ontologyLiteral2);
 
@@ -153,9 +150,6 @@ namespace RDFSharp.UnitTests
         public void Remove_NotExistingLiteral_Failure()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
-            var ontologyLiteral2 = new RDFOntologyLiteral(new RDFPlainLiteral("John"));
             ont.Data.AddLiteral(ontologyLiteral);
                 
             //Act
@@ -169,18 +163,16 @@ namespace RDFSharp.UnitTests
         public void Remove_SameAs_Relation_Success()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var originalOntologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
             var differentOntologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/orangeFunnyCat"));
-            ont.Data.AddFact(originalOntologyFact)
+            ont.Data.AddFact(ontologyFact)
                     .AddFact(differentOntologyFact);
-            ont.Data.AddSameAsRelation(differentOntologyFact, originalOntologyFact);
+            ont.Data.AddSameAsRelation(differentOntologyFact, ontologyFact);
 
             //Act
-            ont.Data.RemoveSameAsRelation(differentOntologyFact, originalOntologyFact);
+            ont.Data.RemoveSameAsRelation(differentOntologyFact, ontologyFact);
 
             //Assert
-            Assert.IsFalse(ont.Data.CheckIsSameFactAs(originalOntologyFact, differentOntologyFact));
+            Assert.IsFalse(ont.Data.CheckIsSameFactAs(ontologyFact, differentOntologyFact));
 
         }
 
@@ -188,11 +180,6 @@ namespace RDFSharp.UnitTests
         public void Remove_Assertion_Success()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
-            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
-            var ontologyFact2 = new RDFOntologyFact(new RDFResource("http://ont/facts/john"));
-            var ontologyLiteral2 = new RDFOntologyLiteral(new RDFPlainLiteral("John"));
             var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
             ont.Data.AddFact(ontologyFact);
             ont.Data.AddFact(ontologyFact2);
@@ -210,9 +197,6 @@ namespace RDFSharp.UnitTests
         [TestMethod]
         public void SelectLiteral_Success() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
-            var ontologyLiteral2 = new RDFOntologyLiteral(new RDFPlainLiteral("John"));
             ont.Data.AddLiteral(ontologyLiteral);
             ont.Data.AddLiteral(ontologyLiteral2);
 
@@ -226,9 +210,6 @@ namespace RDFSharp.UnitTests
         [TestMethod]
         public void SelectNotExistingLiteral_Failure() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyLiteral = new RDFOntologyLiteral(new RDFPlainLiteral("Garfield"));
-            var ontologyLiteral2 = new RDFOntologyLiteral(new RDFPlainLiteral("John"));
             ont.Data.AddLiteral(ontologyLiteral);
             ont.Data.AddLiteral(ontologyLiteral2);
 
@@ -242,9 +223,6 @@ namespace RDFSharp.UnitTests
         [TestMethod]
         public void SelectFact_Success() {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
-            var ontologyFact2 = new RDFOntologyFact(new RDFResource("http://ont/facts/odie"));
             ont.Data.AddFact(ontologyFact)
                     .AddFact(ontologyFact2);
 

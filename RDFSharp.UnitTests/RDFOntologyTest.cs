@@ -12,43 +12,54 @@ namespace RDFSharp.UnitTests
     [TestClass]
     public class RDFOntologyTest
     {
+
+        RDFOntology ont = null;
+        RDFOntologyClass siberian = null;
+        RDFOntologyClass persian = null;
+        RDFOntology new_ont = null;
+        RDFOntologyFact ontologyFact = null;
+        RDFOntologyDatatypeProperty hasName = null;
+        RDFOntologyAnnotationProperty hasNote = null;
+
+        [TestInitialize]
+        public void init()
+        {
+            ont = new RDFOntology(new RDFResource("http://ont/"));
+            siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
+            persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
+            new_ont = new RDFOntology(new RDFResource("http://new_ont/"));
+            ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
+            hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
+            hasNote = new RDFOntologyAnnotationProperty(new RDFResource("http://ont/props/hasNote"));
+        }
+
+
         [TestMethod]
         public void Ctor_WithResourceAndModel()
         {
             //Assert
             var resource = new RDFResource("http://ont/");
             var model = new RDFOntologyModel();
-            var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
             model.ClassModel.AddClass(siberian);
             var data = new RDFOntologyData();
-            var fact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
-            data.AddFact(fact);
-
+            data.AddFact(ontologyFact);
 
             //Act
             var ont = new RDFOntology(resource, model, data, null);
 
             //Assert
-            Assert.AreEqual(fact, ont.Data.SelectFact("http://ont/facts/garfield"));
+            Assert.AreEqual(ontologyFact, ont.Data.SelectFact("http://ont/facts/garfield"));
             Assert.AreEqual(siberian, ont.Model.ClassModel.SelectClass("http://ont/classes/siberian"));
         }
 
         [TestMethod]
         public void UnionWith_hasSumNumberOfModelAndData()
         {
-            //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
+            //Arrange   
             ont.Model.ClassModel.AddClass(siberian);
-            var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
             ont.Model.PropertyModel.AddProperty(hasName);
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
-            ont.Data.AddFact(ontologyFact);
-
-            var new_ont = new RDFOntology(new RDFResource("http://new_ont/"));
-            var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
+            ont.Data.AddFact(ontologyFact);               
             new_ont.Model.ClassModel.AddClass(persian);
-            var hasNote = new RDFOntologyAnnotationProperty(new RDFResource("http://ont/props/hasNote"));
             new_ont.Model.PropertyModel.AddProperty(hasNote);
 
             //Act
@@ -65,15 +76,9 @@ namespace RDFSharp.UnitTests
         public void IntersectWith_hasCommonModelAndDataOnly()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
             ont.Model.ClassModel.AddClass(siberian);
-            var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
             ont.Model.PropertyModel.AddProperty(hasName);
-            var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
             ont.Model.ClassModel.AddClass(persian);
-
-            var new_ont = new RDFOntology(new RDFResource("http://new_ont/"));
             new_ont.Model.ClassModel.AddClass(siberian);
             new_ont.Model.ClassModel.AddClass(persian);
 
@@ -89,17 +94,10 @@ namespace RDFSharp.UnitTests
         public void DifferenceWith_hasDifferentModelAndDataOnly()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
             ont.Model.ClassModel.AddClass(siberian);
-            var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
             ont.Model.PropertyModel.AddProperty(hasName);
-            var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
             ont.Model.ClassModel.AddClass(persian);
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
             ont.Data.AddFact(ontologyFact);
-
-            var new_ont = new RDFOntology(new RDFResource("http://new_ont/"));
             new_ont.Model.ClassModel.AddClass(persian);
 
             //Act
@@ -116,18 +114,10 @@ namespace RDFSharp.UnitTests
         public void Merge_hasSumNumberOfModelAndData()
         {
             //Arrange
-            var ont = new RDFOntology(new RDFResource("http://ont/"));
-            var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
             ont.Model.ClassModel.AddClass(siberian);
-            var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
             ont.Model.PropertyModel.AddProperty(hasName);
-            var ontologyFact = new RDFOntologyFact(new RDFResource("http://ont/facts/garfield"));
             ont.Data.AddFact(ontologyFact);
-
-            var new_ont = new RDFOntology(new RDFResource("http://new_ont/"));
-            var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
             new_ont.Model.ClassModel.AddClass(persian);
-            var hasNote = new RDFOntologyAnnotationProperty(new RDFResource("http://ont/props/hasNote"));
             new_ont.Model.PropertyModel.AddProperty(hasNote);
 
             //Act

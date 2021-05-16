@@ -12,17 +12,31 @@ namespace RDFSharp.UnitTests
     [TestClass]
     public class RDFOntologyModelTest
     {
+
+        RDFOntologyModel model = null;
+        RDFOntologyClass siberian = null;
+        RDFOntologyClass persian = null;
+        RDFOntologyModel new_model = null;
+
+
+        [TestInitialize]
+        public void init()
+        {
+            model = new RDFOntologyModel();
+            siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
+            persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
+            new_model = new RDFOntologyModel();
+        }
+
+
         [TestMethod]
         public void UnionWith_hasSameNumberOfClassesAndProperties() {
             //Arrange
-            var model = new RDFOntologyModel();
-            var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
             model.ClassModel.AddClass(siberian);          
             var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));         
             model.PropertyModel.AddProperty(hasName);
 
             var new_model = new RDFOntologyModel();
-            var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
             new_model.ClassModel.AddClass(persian);
             var hasNote = new RDFOntologyAnnotationProperty(new RDFResource("http://ont/props/hasNote"));
             new_model.PropertyModel.AddProperty(hasNote);
@@ -40,15 +54,11 @@ namespace RDFSharp.UnitTests
         public void IntersectWith_hasSameNumberOfClasses()
         {
             //Arrange
-            var model = new RDFOntologyModel();
-            var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
             model.ClassModel.AddClass(siberian);
+            model.ClassModel.AddClass(persian);
             var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
             model.PropertyModel.AddProperty(hasName);
-            var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
-            model.ClassModel.AddClass(persian);
-
-            var new_model = new RDFOntologyModel();
+            
             new_model.ClassModel.AddClass(siberian);
             new_model.ClassModel.AddClass(persian);
 
@@ -64,19 +74,16 @@ namespace RDFSharp.UnitTests
         public void DifferenceWith_hasSameNumberOfClasses()
         {
             //Arrange
-            var ont = new RDFOntologyModel();
-            var siberian = new RDFOntologyClass(new RDFResource("http://ont/classes/siberian"));
-            ont.ClassModel.AddClass(siberian);
+            model.ClassModel.AddClass(siberian);
+            model.ClassModel.AddClass(persian);
             var hasName = new RDFOntologyDatatypeProperty(new RDFResource("http://ont/props/hasName"));
-            ont.PropertyModel.AddProperty(hasName);
-            var persian = new RDFOntologyClass(new RDFResource("http://ont/classes/persian"));
-            ont.ClassModel.AddClass(persian);
+            model.PropertyModel.AddProperty(hasName);         
 
             var new_model = new RDFOntologyModel();
             new_model.ClassModel.AddClass(persian);
 
             //Act
-            var difference_model = ont.DifferenceWith(new_model);
+            var difference_model = model.DifferenceWith(new_model);
 
             //Assert
             Assert.AreEqual(1, difference_model.ClassModel.ClassesCount);
