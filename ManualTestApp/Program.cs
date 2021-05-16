@@ -13,13 +13,13 @@ namespace ManualTestApp
     {
         static void Main(string[] args)
         {
-             try
-             {
-                 //Teszt1_1: resource létrehozás helyesuri string-gel
-                 //Teszt1_1 Elvárás: Sikeres létrehozás
-                 //Teszt1_1 kimenetel: Sikeres létrehozás
-                 var donaldduck = new RDFResource("http://www.waltdisney.com/donald_duck");
-                 Console.WriteLine(donaldduck);
+            try
+            {
+                //Teszt1_1: resource létrehozás helyesuri string-gel
+                //Teszt1_1 Elvárás: Sikeres létrehozás
+                //Teszt1_1 kimenetel: Sikeres létrehozás
+                var donaldduck = new RDFResource("http://www.waltdisney.com/donald_duck");
+                Console.WriteLine(donaldduck);
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
             try
@@ -28,7 +28,7 @@ namespace ManualTestApp
                 //Teszt1_2 Elvárás: Blank resource létrehozás
                 //Teszt1_2 kimenetel: Exception
                 var emptystring = new RDFResource("");
-                 Console.WriteLine(emptystring);
+                Console.WriteLine(emptystring);
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
             try
@@ -37,7 +37,7 @@ namespace ManualTestApp
                 //Teszt1_3 Elvárás: Blank resource létrehozás
                 //Teszt1_3 kimenetel: Exception
                 var nullresource = new RDFResource(null);
-                 Console.WriteLine(nullresource);
+                Console.WriteLine(nullresource);
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
             try
@@ -46,7 +46,7 @@ namespace ManualTestApp
                 //Teszt1_4 Elvárás: Blank resource létrehozás
                 //Teszt1_4 kimenetel: sikeresen létrehozott Blank resource
                 var parameterless = new RDFResource();
-                 Console.WriteLine(parameterless);
+                Console.WriteLine(parameterless);
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
             try
@@ -55,7 +55,7 @@ namespace ManualTestApp
                 //Teszt1_5 Elvárás: Exception
                 //Teszt1_5 kimenetel: Exception
                 var noturistring = new RDFResource("noturi");
-                 Console.WriteLine(noturistring);
+                Console.WriteLine(noturistring);
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
             try
@@ -74,7 +74,7 @@ namespace ManualTestApp
                 //Teszt2_2 Elvárás: Sikeres létrehozás üres srting értékkel
                 //Teszt2_2 kimenetel: Sikeres létrehozás
                 var blankstring = new RDFPlainLiteral("");
-                 Console.WriteLine(blankstring);
+                Console.WriteLine(blankstring);
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
             try
@@ -216,8 +216,8 @@ namespace ManualTestApp
                 new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INTEGER));
 
                 var waltdisney_list = new RDFGraph(new List<RDFTriple>() { mickeymouse_is85yr, donaldduck_name_enus_triple });
-                foreach(RDFTriple Triple in waltdisney_list)
-                Console.WriteLine(Triple);
+                foreach (RDFTriple Triple in waltdisney_list)
+                    Console.WriteLine(Triple);
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
             try
@@ -277,7 +277,7 @@ namespace ManualTestApp
 
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
-           
+
 
 
             try
@@ -297,8 +297,8 @@ namespace ManualTestApp
 
                 var waltdisney_list = new RDFGraph(new List<RDFTriple>() { mickeymouse_is85yr, donaldduck_name_enus_triple });
 
-                waltdisney_list.ToFile( RDFModelEnums.RDFFormats.NTriples, Directory.GetParent(System.Reflection.Assembly.GetExecutingAssembly().Location)+"/graph.3n");
-                
+                waltdisney_list.ToFile(RDFModelEnums.RDFFormats.NTriples, Directory.GetParent(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/graph.3n");
+
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
             try
