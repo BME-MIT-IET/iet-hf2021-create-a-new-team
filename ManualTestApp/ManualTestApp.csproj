@@ -50,8 +50,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\iet-hf2021-create-a-new-team-main\RDFSharp\RDFSharp.csproj">
-      <Project>{890361B2-B743-4217-AFE9-4AC54EAEC5AB}</Project>
+    <ProjectReference Include="..\RDFSharp\RDFSharp.csproj">
+      <Project>{1eea1a7e-a661-4745-810e-fbeb9f20b6fc}</Project>
       <Name>RDFSharp</Name>
     </ProjectReference>
   </ItemGroup>
