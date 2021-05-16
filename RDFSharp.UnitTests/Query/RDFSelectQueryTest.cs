@@ -13,9 +13,9 @@ namespace RDFSharp.UnitTests
     {
         private static RDFGraph graph = TestRDFObjectProvider.graph;
         private static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-        private static string emptyQueryResultPath = Path.Combine(projectPath, "EmptyQueryResult.xml");
+        private static string emptyQueryResultPath = Path.Combine(projectPath, "Query", "EmptyQueryResult.xml");
         private static string emptyQueryTestResultPath = "EmptyQueryTestResult.xml";
-        private static string nonEmptyQueryResultPath = Path.Combine(projectPath, "NonEmptyQueryResult.xml");
+        private static string nonEmptyQueryResultPath = Path.Combine(projectPath, "Query", "NonEmptyQueryResult.xml");
         private static string nonEmptyQueryTestResultPath = "NonEmptyQueryTestResult.xml";
 
         private static string selectEverythingString = "SELECT *\n";
