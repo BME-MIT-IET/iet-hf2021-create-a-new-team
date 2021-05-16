@@ -1,2 +1,0 @@
-<http://www.waltdisney.com/mickey_mouse> <http://xmlns.com/foaf/0.1/age> "85"^^<http://www.w3.org/2001/XMLSchema#integer> .
-<http://www.waltdisney.com/donald_duck> <http://xmlns.com/foaf/0.1/name> "Donald Duck"@EN-US .
