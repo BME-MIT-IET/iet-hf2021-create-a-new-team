@@ -1,0 +1,11 @@
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\bin\Debug\ManualTestApp.exe.config
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\bin\Debug\ManualTestApp.exe
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\bin\Debug\ManualTestApp.pdb
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\bin\Debug\RDFSharp.dll
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\bin\Debug\RDFSharp.pdb
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\bin\Debug\RDFSharp.xml
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\obj\Debug\ManualTestApp.csprojAssemblyReference.cache
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\obj\Debug\ManualTestApp.csproj.CoreCompileInputs.cache
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\obj\Debug\ManualTestApp.csproj.CopyComplete
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\obj\Debug\ManualTestApp.exe
+C:\Users\szear\source\repos\ManualTestApp\ManualTestApp\obj\Debug\ManualTestApp.pdb
